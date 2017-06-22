@@ -1,0 +1,31 @@
+{
+    "quintet" : [
+        {
+            "id": "#94B0DA",
+            "name": "Fancy Blue",
+            "src": "https://coolors.co/cd3b7d-daea7c-cdcad1-969399-534b52",
+            "palettes": [
+                {
+                    "type": "Default",
+                    "values": {
+                        "primary": "#94B0DA",
+                        "secondary": "#8F91A2",
+                        "tertiary": "#505A5B",
+                        "background": "#DCEDFF",
+                        "dropShadow": "#343F3E"
+                    }
+                },
+                {
+                    "type": "LightOnDark",
+                    "values": {
+                        "primary": "#94B0DA",
+                        "secondary": "#8F91A2",
+                        "tertiary": "#505A5B",
+                        "background": "#DCEDFF",
+                        "dropShadow": "#343F3E"
+                    }
+                }
+            ]
+        }
+    ]
+}
