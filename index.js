@@ -70,6 +70,11 @@ function insertPalette(req, res) {
 }
 
 
+function ver(req, res) {
+    res.send(JSON.stringify({version: "VERSION!"}))
+}
+
+
 const HARD_CODED_SHITTY_TOKEN = '63473ED6-D815-4CA9-A119-940EB358DAE9';
 
 function ensureAuthenticated(req, res, next) {
@@ -101,6 +106,7 @@ app.post('/getPalette', ensureAuthenticated, getPalette);
 app.post('/random', ensureAuthenticated, randomPalette);
 app.post('/hidePalette', ensureAuthenticated, hidePalette);
 app.post('/insertPalette', ensureAuthenticated, insertPalette);
+app.post('/ver', ensureAuthenticated, ver);
 
 app.listen(app.get('port'), function() {
     console.log('Express server listening on port ' + app.get('port'));
