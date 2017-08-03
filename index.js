@@ -106,7 +106,7 @@ app.post('/getPalette', ensureAuthenticated, getPalette);
 app.post('/random', ensureAuthenticated, randomPalette);
 app.post('/hidePalette', ensureAuthenticated, hidePalette);
 app.post('/insertPalette', ensureAuthenticated, insertPalette);
-app.post('/ver', ensureAuthenticated, ver);
+app.get('/ver', ensureAuthenticated, ver);
 
 app.listen(app.get('port'), function() {
     console.log('Express server listening on port ' + app.get('port'));
