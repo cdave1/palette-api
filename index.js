@@ -70,13 +70,6 @@ function insertPalette(req, res) {
 }
 
 
-function ver(req, res) {
-    res.send(JSON.stringify({version: "VERSION!"}))
-}
-
-
-const HARD_CODED_SHITTY_TOKEN = '63473ED6-D815-4CA9-A119-940EB358DAE9';
-
 function ensureAuthenticated(req, res, next) {
     req.assert('token', 'Need token').notEmpty();
 
@@ -86,7 +79,7 @@ function ensureAuthenticated(req, res, next) {
         return res.status(400).send(errors);
     }
 
-    if (req.body.token && req.body.token === HARD_CODED_SHITTY_TOKEN) {
+    if (req.body.token && req.body.token === process.env.HARD_CODED_AUTH_TOKEN) {
         next();
     } else {
         res.status(401).send({ msg: 'Unauthorized' });
@@ -106,7 +99,6 @@ app.post('/getPalette', ensureAuthenticated, getPalette);
 app.post('/random', ensureAuthenticated, randomPalette);
 app.post('/hidePalette', ensureAuthenticated, hidePalette);
 app.post('/insertPalette', ensureAuthenticated, insertPalette);
-app.get('/ver', ensureAuthenticated, ver);
 
 app.listen(app.get('port'), function() {
     console.log('Express server listening on port ' + app.get('port'));
