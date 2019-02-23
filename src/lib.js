@@ -10,13 +10,13 @@ const request = require('request');
 const PaletteDatabase = require('./PaletteDatabase');
 
 
-function allPalettes(req, res) {
+module.exports.allPalettes = (req, res) => {
     var data = PaletteDatabase.all();
     res.send(data);
 }
 
 
-function getPalette(req, res) {
+module.exports.getPalette = (req, res) => {
     if (req.body.paletteId) {
         var palette = PaletteDatabase.get({id: req.body.paletteId});
         res.send(palette);
@@ -26,12 +26,12 @@ function getPalette(req, res) {
 }
 
 
-function randomPalette(req, res) {
+module.exports.randomPalette = (req, res) => {
     res.send(PaletteDatabase.random());
 }
 
 
-function hidePalette(req, res) {
+module.exports.hidePalette = (req, res) => {
     PaletteDatabase.upsert({ 
         id: message.paletteId,
         rating: 1.0
@@ -39,7 +39,7 @@ function hidePalette(req, res) {
 }
 
 
-function insertPalette(req, res) {
+module.exports.insertPalette = (req, res) => {
     if (!req.body.palette) {
         return res.send({ error: 'Missing...' });
     }
@@ -70,7 +70,7 @@ function insertPalette(req, res) {
 }
 
 
-function ensureAuthenticated(req, res, next) {
+module.exports.ensureAuthenticated = (req, res, next) => {
     req.assert('token', 'Need token').notEmpty();
 
     var errors = req.validationErrors();
@@ -85,23 +85,3 @@ function ensureAuthenticated(req, res, next) {
         res.status(401).send({ msg: 'Unauthorized' });
     }
 };
-
-
-var app = express();
-app.set('port', process.env.PORT || 3000);
-app.use(compression());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(expressValidator());
-
-app.post('/allPalettes', ensureAuthenticated, allPalettes);
-app.post('/getPalette', ensureAuthenticated, getPalette);
-app.post('/random', ensureAuthenticated, randomPalette);
-app.post('/hidePalette', ensureAuthenticated, hidePalette);
-app.post('/insertPalette', ensureAuthenticated, insertPalette);
-
-app.listen(app.get('port'), function() {
-    console.log('Express server listening on port ' + app.get('port'));
-});
-
-module.exports = app;

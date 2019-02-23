@@ -9,12 +9,17 @@
   "author": "David Petrie",
   "license": "MIT",
   "dependencies": {
+    "aws-serverless-express": "^3.0.2",
     "body-parser": "^1.17.2",
     "compression": "^1.6.2",
+    "cors": "^2.8.4",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "express-validator": "^3.2.0",
     "lodash": "^4.17.4",
     "request": "^2.81.0"
+  },
+  "devDependencies": {
+    "serverless-offline": "^3.16.0"
   }
 }
